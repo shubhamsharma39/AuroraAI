@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Home, PenTool, FileText, MessageSquare, LayoutDashboard, Zap, Activity, Bot, Clock } from 'lucide-react';
+import { PenTool, FileText, LayoutDashboard, Zap, Activity, Bot, Clock } from 'lucide-react';
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
     const menuItems = [

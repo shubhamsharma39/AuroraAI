@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Bot, Loader2, Search, Zap, Trash2, MessageCircle, Paperclip, X, Link, Image as ImageIcon, FileText as FileIcon } from 'lucide-react';
+import { Send, User, Bot, Loader2, Zap, Trash2, MessageCircle } from 'lucide-react';
 import { aiService } from '../services/api';
 import { historyService } from '../services/historyService';
 import toast from 'react-hot-toast';

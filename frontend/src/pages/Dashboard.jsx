@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { PenTool, FileText, MessageSquare, ArrowRight, Sparkles, Brain, Cpu, Bot } from 'lucide-react';
+import { PenTool, FileText, ArrowRight, Brain, Cpu, Bot } from 'lucide-react';
 
 const DashboardCard = ({ card, i, onNavigate }) => {
     const mouseX = useMotionValue(0);

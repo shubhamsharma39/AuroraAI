@@ -10,14 +10,14 @@ const History = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [copiedId, setCopiedId] = useState(null);
 
-    useEffect(() => {
-        loadHistory();
-    }, []);
-
     const loadHistory = async () => {
         const data = await historyService.getHistory();
         setHistory(data);
     };
+
+    useEffect(() => {
+        loadHistory();
+    }, []);
 
     const handleDelete = async (id) => {
         await historyService.deleteEntry(id);

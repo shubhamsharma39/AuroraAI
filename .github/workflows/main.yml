@@ -28,6 +28,7 @@ jobs:
 
   # 2. Backend CI: Syntax Check and Dependencies
   backend-ci:
+    needs: frontend-ci
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -50,6 +51,7 @@ jobs:
 
   # 3. AI Service CI: Python Syntax Check & Tests
   ai-service-ci:
+    needs: backend-ci
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -71,16 +73,15 @@ jobs:
           find . -name "*.py" -not -path "./venv/*" -exec python -m py_compile {} +
       - name: Run Smoke Tests
         run: |
-          # Mock dependencies or use simple smoke tests if assertions are missing
-          # python test_llm.py (Note: this might fail without API keys, so we just check compile for now)
           echo "Syntax check passed for all AI service files."
 
   # 4. Global Docker Build Verification
   docker-build-verification:
+    needs: ai-service-ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build with Docker Compose
-        run: docker compose build
+        run: docker compose build --no-cache

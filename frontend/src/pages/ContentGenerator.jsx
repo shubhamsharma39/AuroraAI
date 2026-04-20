@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Copy, Check, Loader2, Wand2, Type, MessageSquare, BookOpen, Quote, ChevronDown, Zap } from 'lucide-react';
+import { Sparkles, Copy, Check, Loader2, Wand2, MessageSquare, BookOpen, Quote, ChevronDown, Zap } from 'lucide-react';
 import { aiService } from '../services/api';
 import { historyService } from '../services/historyService';
 import toast from 'react-hot-toast';
@@ -40,7 +40,7 @@ const ContentGenerator = () => {
             });
             
             toast.success('Synthesis complete!');
-        } catch (error) {
+        } catch {
             toast.error('Synthesis failed. Is the engine active?');
         } finally {
             setLoading(false);

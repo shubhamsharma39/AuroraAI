@@ -45,7 +45,7 @@ const DocumentAnalyzer = ({ setCurrentDocId }) => {
             });
 
             toast.success('Vectorization complete!');
-        } catch (error) {
+        } catch {
             toast.error('Analysis failed. Ensure file format is supported.');
         } finally {
             setLoading(false);

@@ -8,7 +8,7 @@ export const historyService = {
      * Save is now handled automatically by the backend controllers
      * when an action is performed. This remains for interface compatibility.
      */
-    saveEntry(type, data) {
+    saveEntry(_type, _data) {
         // Automatically handled by backend
         return null;
     },
