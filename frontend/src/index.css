@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-purple: #8b5cf6;
+  --color-brand-blue: #3b82f6;
+  --color-brand-cyan: #06b6d4;
+  --color-brand-magenta: #d946ef;
+  --color-bg-dark: #020617;
+}
+
+:root {
+  font-family: 'Outfit', 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: var(--color-bg-dark);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #020617;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Aurora Prime Utilities */
+.glass-prime {
+  @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+}
+
+.glass-card {
+  @apply bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-2xl transition-all duration-300;
+}
+
+.glass-morphism {
+  @apply bg-white/[0.02] backdrop-blur-lg border border-white/5;
+}
+
+.glass-border {
+  @apply border border-white/10 bg-white/[0.01];
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-cyan-400 to-purple-500;
+}
+
+.cyber-button {
+  @apply px-6 py-3 rounded-xl font-bold transition-all duration-300 active:scale-95 flex items-center gap-2 overflow-hidden relative;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; filter: blur(20px); }
+  50% { opacity: 0.8; filter: blur(30px); }
+}
+
+.glow-overlay {
+  @apply absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

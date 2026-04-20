@@ -1,170 +1,83 @@
-# 💫 AuroraAI - Illuminate Infrastructure Health with AI
+# 💫 AuroraAI - Modern SaaS AI Platform
 
-<div align="center">
+AuroraAI is a premium, production-ready full-stack AI application featuring a modular backend, a dedicated Python AI microservice, and a stunning React frontend.
 
-![AuroraAI Banner](https://img.shields.io/badge/AuroraAI-Intelligent%20Monitoring-blueviolet?style=for-the-badge)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)](https://www.python.org/)
-</div>
- 
-**Beautiful Intelligence. Instant Detection. Auto-Healing.**
+## ✨ Features
 
-## TerraCode Convergence Hackathon 2026
+- **Dashboard**: High-level overview of AI capabilities with glassmorphism UI.
+- **Content Generator**: Create professional blogs, emails, and social posts using local LLMs.
+- **Document Analyzer**: Upload PDF/Docx/TXT to extract summaries and process for Q&A.
+- **Document Q&A**: Interactive chat interface powered by RAG (Retrieval Augmented Generation) and FAISS.
+- **Local-First AI**: Powered by Ollama for privacy and performance.
 
-**Beautiful Intelligence. Instant Detection. Auto-Healing.**
+## 🛠️ Tech Stack
 
----
-
-## Inspiration
-
-Every minute of downtime costs companies thousands of dollars. DevOps teams spend hours manually debugging incidents, identifying failing APIs, and applying fixes. We asked: **What if AI could illuminate these issues instantly and heal them automatically?**
-
-AuroraAI was born from this vision - like the aurora borealis illuminating the night sky, our AI illuminates infrastructure health, making the invisible visible and healing issues before they impact users.
-
-<img width="2703" height="1186" alt="image" src="https://github.com/user-attachments/assets/7b08512d-7a51-4475-b2a0-c7111ea6a84e" />
+- **Frontend**: React (Vite), Tailwind CSS v4, Framer Motion, Lucide React.
+- **Backend (Node.js)**: Express.js API Gateway, Multer for file processing.
+- **AI Service (Python)**: FastAPI, Ollama (llama3), Sentence-Transformers, FAISS, PyPDF.
 
 ---
 
+## 🚀 Setup Instructions
 
+### 1. Prerequisites
+- [Ollama](https://ollama.com/) (Installed and running)
+- Node.js (v18+)
+- Python (3.9+)
 
-### The Problem
-- Every minute of downtime costs companies **thousands of dollars**
-- DevOps teams spend **hours** manually debugging incidents
-- Generic error messages provide **no actionable insights**
-- Mean Time To Recovery (MTTR) averages **2-4 hours**
-
-## What It Does
-
-AuroraAI is an **AI-powered incident detection and auto-healing platform** that:
-
-- ✅ Detect errors in **seconds** (not hours)
-- ✅ Provide **context-specific** explanations for each website
-- ✅ Recommend **domain-aware** fixes
-- ✅ Reduce MTTR by **99%** (from hours to seconds)
-
-### Real-World Impact:
-- **E-commerce**: Prevents $50K/hour revenue loss during outages
-- **SaaS**: Maintains 99.99% uptime SLAs
-- **Startups**: DevOps automation without expensive engineers
-
----
-
-## How I Built It
-
-### Tech Stack:
-**Frontend:**
-- React + Vite - Lightning-fast UI
-- Tailwind CSS - Modern, responsive design
-- Framer Motion - Smooth animations
-- Socket.IO - Real-time updates
-
-**Backend:**
-- Python Flask - RESTful API
-- Flask-SocketIO - WebSocket streaming
-- Requests - HTTP monitoring
-- AI Pattern Matching - Intelligent diagnosis
-
-**AI/ML:**
-- Custom AI engine for root cause analysis
-- Confidence scoring algorithms (85%+ accuracy)
-- Pattern recognition for error detection
-- Automated fix generation
-
-### Architecture:
-```
-User → React UI → Flask API → AI Engine → Auto-Healing
-                      ↓
-                 WebSocket Stream (Live Logs)
-```
-
----
-
-## Key Features
-
-### 1. Universal Monitoring
-Monitor ANY website - no configuration needed. Just paste the URL.
-
-### 2. Instant Detection
-Detects HTTP errors (500, 502, 503, 504), timeouts, and connection failures in real-time.
-
-### 3. AI Diagnosis
-- Identifies exact root cause
-- Provides confidence score (70-95%)
-- Estimates fix time
-- Suggests prevention strategies
-
-### 4. Live Analysis Stream
-Watch AI think in real-time through a beautiful terminal-style live stream.
-
-### 5. Auto-Healing
-Automatically applies fixes and tracks Mean Time To Recovery (MTTR).
-
----
-
-## Challenges I Faced
-
-1. **Real-time Communication** - Implemented WebSockets for live log streaming
-2. **AI Accuracy** - Built pattern matching algorithms with 85%+ confidence
-3. **Universal Compatibility** - Made it work for ANY website without configuration
-4. **Premium UX** 
----
-
-## What I Learned
-
-- Building production-grade AI systems
-- Real-time WebSocket architecture
-- DevOps incident response workflows
-- Creating enterprise-ready UX that judges love
-  
----
-
-## Impact Metrics
-
-| Metric | Before AuroraAI | With AuroraAI | Improvement |
-|--------|-----------------|---------------|-------------|
-| MTTR | 2-4 hours | 8 seconds | **99.9%** ↓ |
-| Downtime Cost | $50K/hour | $0.11/hour | **99.8%** ↓ |
-| Manual Effort | 100% | 5% | **95%** ↓ |
-| Detection Time | 15-30 min | 2 seconds | **99.8%** ↓ |
-
----
-
-## 🎮 Try It Out
-
-### Quick Start:
+### 2. Pull Local AI Models
+Open your terminal and run:
 ```bash
-# Backend
-cd backend
-pip install -r requirements.txt
-python app.py
+ollama pull llama3
+```
 
-# Frontend
+### 3. Setup Python AI Microservice
+```bash
+cd ai-service
+# It is recommended to use a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+pip install -r requirements.txt
+python main.py
+```
+*Service runs on: http://localhost:8000*
+
+### 4. Setup Node.js Backend
+```bash
+cd backend
+npm install
+npm install -g nodemon # Optional for dev
+node index.js
+```
+*Backend runs on: http://localhost:5000*
+
+### 5. Setup Frontend
+```bash
 cd frontend
 npm install
 npm run dev
 ```
-
-### Demo URLs:
-- `http://httpstat.us/500` - Server Error
-- `http://httpstat.us/503` - Service Unavailable
-- `https://www.google.com` - Healthy Site
+*App runs on: http://localhost:5173*
 
 ---
+
+## 📂 Project Structure
+
+```text
+├── ai-service/          # Python FastAPI Microservice
+│   ├── routes/          # API endpoints
+│   ├── services/        # AI & Document Logic
+│   └── main.py          # Entry point
+├── backend/             # Node.js Express Gateway
+│   ├── routes/          # API proxy routes
+│   ├── controllers/     # API logic
+│   └── index.js         # Entry point
+├── frontend/            # React (Vite) Application
+│   ├── src/components/  # UI Components (Glassmorphism)
+│   ├── src/pages/       # App Sections
+│   └── src/index.css    # Tailwind v4 Styles
+```
 
 ## 📝 License
-
-MIT License - Open Source
-
----
-
-## 🔗 Links
-
-- **GitHub**: [Repository URL]
-- **Demo Video**: [2-3 minute video]
-- **Live Demo**: [Deployed URL]
-
----
-
-**💫 AuroraAI - Illuminate Infrastructure Health with AI**
-
-*Built for TerraCode Convergence 2026*
+MIT
