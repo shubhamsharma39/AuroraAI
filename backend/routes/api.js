@@ -5,6 +5,20 @@ const aiController = require('../controllers/aiController');
 
 const upload = multer({ dest: 'uploads/' });
 
+// API Root Status
+router.get('/', (req, res) => {
+    res.json({ 
+        message: 'AuroraAI API is operational',
+        version: 'v2.0',
+        available_endpoints: [
+            '/history', 
+            '/generate-content', 
+            '/universal-chat', 
+            '/ask-document'
+        ]
+    });
+});
+
 router.post('/generate-content', aiController.generateContent);
 router.post('/upload-document', upload.single('file'), aiController.uploadDocument);
 router.post('/ask-document', aiController.askDocument);
