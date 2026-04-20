@@ -10,4 +10,9 @@ router.post('/upload-document', upload.single('file'), aiController.uploadDocume
 router.post('/ask-document', aiController.askDocument);
 router.post('/universal-chat', aiController.universalChat);
 
+// History Routes
+router.get('/history', aiController.getHistory);
+router.delete('/history/all', aiController.clearAllHistory);
+router.delete('/history/:id', aiController.deleteHistoryEntry);
+
 module.exports = router;

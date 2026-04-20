@@ -240,23 +240,6 @@ const QASection = () => {
                 </div>
             </div>
         </div>
-
-                            <button 
-                                type="submit"
-                                disabled={loading || !question.trim()}
-                                className={`cyber-button shrink-0 h-[60px] w-[60px] flex items-center justify-center p-0 rounded-2xl ${
-                                    loading || !question.trim() 
-                                    ? 'bg-white/5 text-white/20' 
-                                    : 'bg-white text-[#020617] hover:bg-cyan-400'
-                                }`}
-                            >
-                                <Send size={20} />
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     );
 };
 

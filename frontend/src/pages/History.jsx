@@ -14,20 +14,21 @@ const History = () => {
         loadHistory();
     }, []);
 
-    const loadHistory = () => {
-        setHistory(historyService.getHistory());
+    const loadHistory = async () => {
+        const data = await historyService.getHistory();
+        setHistory(data);
     };
 
-    const handleDelete = (id) => {
-        historyService.deleteEntry(id);
-        loadHistory();
+    const handleDelete = async (id) => {
+        await historyService.deleteEntry(id);
+        await loadHistory();
         toast.success('Entry removed');
     };
 
-    const handleClear = () => {
+    const handleClear = async () => {
         if (window.confirm('Wipe all activity history? This cannot be undone.')) {
-            historyService.clearHistory();
-            loadHistory();
+            await historyService.clearHistory();
+            await loadHistory();
             toast.success('History cleared');
         }
     };

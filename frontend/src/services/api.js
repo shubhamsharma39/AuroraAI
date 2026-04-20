@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api', // Node.js Backend
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api', // Node.js Backend
 });
 
 export const aiService = {
@@ -13,6 +13,11 @@ export const aiService = {
     }),
     askDocument: (data) => api.post('/ask-document', data),
     universalChat: (data) => api.post('/universal-chat', data),
+    
+    // History methods
+    getHistory: () => api.get('/history'),
+    deleteHistory: (id) => api.delete(`/history/${id}`),
+    clearAllHistory: () => api.delete('/history/all'),
 };
 
 export default api;

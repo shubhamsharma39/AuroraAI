@@ -1,0 +1,59 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: aurora_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - aurora_network
+
+  ai-service:
+    build: ./ai-service
+    container_name: aurora_ai_service
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - aurora_network
+
+  backend:
+    build: ./backend
+    container_name: aurora_backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - ai-service
+    env_file:
+      - .env
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/aurora
+      - AI_SERVICE_URL=http://ai-service:8000
+    networks:
+      - aurora_network
+
+  frontend:
+    build: ./frontend
+    container_name: aurora_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_BASE_URL=http://localhost:5000/api
+    networks:
+      - aurora_network
+
+networks:
+  aurora_network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
