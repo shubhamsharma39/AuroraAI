@@ -62,8 +62,8 @@ const DocumentAnalyzer = ({ setCurrentDocId, onNavigate }) => {
                 >
                     <Database size={14} /> Data Ingestion Layer
                 </motion.div>
-                <h1 className="text-5xl font-black tracking-tighter">Document <span className="gradient-text">Analyzer</span></h1>
-                <p className="text-white/40 text-lg font-medium max-w-xl mx-auto leading-relaxed">
+                <h1 className="text-3xl md:text-5xl font-black tracking-tighter">Document <span className="gradient-text">Analyzer</span></h1>
+                <p className="text-white/40 text-sm md:text-lg font-medium max-w-xl mx-auto leading-relaxed">
                     High-performance semantic vectorization for massive PDF, Docx, and TXT volumes.
                 </p>
             </header>
@@ -101,8 +101,8 @@ const DocumentAnalyzer = ({ setCurrentDocId, onNavigate }) => {
                         </div>
 
                         {!loading && (
-                            <div className="relative z-10 flex gap-4">
-                                <label className="cyber-button bg-white text-[#020617] hover:bg-cyan-400 cursor-pointer text-xs font-black uppercase tracking-widest px-8">
+                            <div className="relative z-10 flex flex-col sm:flex-row gap-4 px-6 w-full sm:w-auto">
+                                <label className="cyber-button bg-white text-[#020617] hover:bg-cyan-400 cursor-pointer text-xs font-black uppercase tracking-widest px-8 text-center">
                                     Browse Cluster
                                     <input type="file" className="hidden" onChange={handleFileChange} accept=".pdf,.docx,.txt" />
                                 </label>
@@ -138,19 +138,20 @@ const DocumentAnalyzer = ({ setCurrentDocId, onNavigate }) => {
                     className="max-w-4xl mx-auto space-y-8"
                 >
                     <div className="glass-prime overflow-hidden">
-                        <div className="bg-gradient-to-r from-emerald-600/20 to-cyan-600/20 p-8 border-b border-white/10 flex items-center justify-between">
-                            <div className="flex items-center gap-6">
-                                <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.4)]">
-                                    <CheckCircle2 size={32} className="text-white" />
+                        <div className="bg-gradient-to-r from-emerald-600/20 to-cyan-600/20 p-6 md:p-8 border-b border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+                            <div className="flex items-center gap-4 md:gap-6">
+                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-emerald-500 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.4)] shrink-0">
+                                    <CheckCircle2 size={24} className="text-white md:hidden" />
+                                    <CheckCircle2 size={32} className="text-white hidden md:block" />
                                 </div>
                                 <div>
-                                    <h2 className="text-2xl font-black tracking-tight">Injection Successful</h2>
-                                    <p className="text-white/50 text-sm font-bold uppercase tracking-widest">Document Vectorized & Indexed</p>
+                                    <h2 className="text-xl md:text-2xl font-black tracking-tight">Injection Successful</h2>
+                                    <p className="text-white/50 text-[10px] md:text-sm font-bold uppercase tracking-widest">Document Vectorized & Indexed</p>
                                 </div>
                             </div>
                             <button 
                                 onClick={() => { setFile(null); setResult(null); }}
-                                className="p-3 rounded-xl bg-white/5 border border-white/10 text-white/40 hover:text-white transition-all"
+                                className="p-3 rounded-xl bg-white/5 border border-white/10 text-white/40 hover:text-white transition-all self-end sm:self-center"
                             >
                                 <X size={20} />
                             </button>
@@ -193,11 +194,11 @@ const DocumentAnalyzer = ({ setCurrentDocId, onNavigate }) => {
                                     <Zap size={16} fill="currentColor" className="text-cyan-400" />
                                     <h3 className="text-xs font-black uppercase tracking-[0.3em]">Core Synthesis Summary</h3>
                                 </div>
-                                <div className="p-8 rounded-3xl bg-white/[0.03] border border-white/10 relative overflow-hidden">
+                                <div className="p-6 md:p-8 rounded-3xl bg-white/[0.03] border border-white/10 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-4 opacity-5">
                                         <Search size={120} />
                                     </div>
-                                    <p className="text-lg leading-relaxed text-white/80 font-medium relative z-10 italic">
+                                    <p className="text-base md:text-lg leading-relaxed text-white/80 font-medium relative z-10 italic">
                                         "{result.summary}"
                                     </p>
                                 </div>

@@ -100,7 +100,7 @@ const QASection = ({ docId }) => {
                     >
                         <Zap size={12} fill="currentColor" /> Universal AI Assistant
                     </motion.div>
-                    <h1 className="text-4xl font-black tracking-tighter">Aurora<span className="gradient-text">Aether</span></h1>
+                    <h1 className="text-3xl md:text-4xl font-black tracking-tighter">Aurora<span className="gradient-text">Aether</span></h1>
                 </div>
             
                 <div className="flex items-center gap-4">
@@ -126,7 +126,7 @@ const QASection = ({ docId }) => {
 
                 <div 
                     ref={scrollRef}
-                    className="flex-1 overflow-y-auto p-10 space-y-10 scrollbar-hide relative z-10"
+                    className="flex-1 overflow-y-auto p-4 md:p-10 space-y-6 md:space-y-10 scrollbar-hide relative z-10"
                 >
                     {messages.length === 0 && (
                         <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
@@ -154,7 +154,7 @@ const QASection = ({ docId }) => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 className={`flex items-start gap-6 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                             >
-                                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-2xl relative overflow-hidden group ${
+                                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-2xl relative overflow-hidden group ${
                                     msg.role === 'user' 
                                     ? 'bg-gradient-to-br from-cyan-600 to-blue-700' 
                                     : 'bg-gradient-to-br from-purple-600 to-indigo-700'
@@ -163,8 +163,8 @@ const QASection = ({ docId }) => {
                                     {msg.role === 'user' ? <User size={24} className="text-white" /> : <Bot size={24} className="text-white" />}
                                 </div>
                                 
-                                <div className={`flex flex-col space-y-2 max-w-[75%] ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
-                                    <div className={`p-6 rounded-[2rem] ${
+                                <div className={`flex flex-col space-y-2 max-w-[85%] md:max-w-[75%] ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                                    <div className={`p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] ${
                                         msg.role === 'user' 
                                         ? 'bg-cyan-600/10 border-cyan-500/20 rounded-tr-none' 
                                         : 'bg-white/5 border-white/10 rounded-tl-none'
@@ -188,12 +188,12 @@ const QASection = ({ docId }) => {
                             <motion.div 
                                 initial={{ opacity: 0, y: 10 }} 
                                 animate={{ opacity: 1, y: 0 }} 
-                                className="flex items-center gap-6"
+                                className="flex items-center gap-4 md:gap-6"
                             >
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-2xl">
-                                    <Loader2 className="animate-spin text-white" size={24} />
+                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-2xl shrink-0">
+                                    <Loader2 className="animate-spin text-white" size={20} />
                                 </div>
-                                <div className="p-6 rounded-[2rem] rounded-tl-none bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3">
+                                <div className="p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] rounded-tl-none bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3">
                                     <div className="flex gap-1">
                                         <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
                                         <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5, delay: 0.2 }} className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
@@ -206,9 +206,9 @@ const QASection = ({ docId }) => {
                     </AnimatePresence>
                 </div>
 
-                <div className="p-8 bg-[#020617]/70 border-t border-white/5 backdrop-blur-2xl relative z-20">
+                <div className="p-4 md:p-8 bg-[#020617]/70 border-t border-white/5 backdrop-blur-2xl relative z-20">
                     <div className="max-w-4xl mx-auto flex flex-col space-y-3">
-                        <form onSubmit={handleAsk} className="relative flex gap-4 w-full items-end">
+                        <form onSubmit={handleAsk} className="relative flex gap-2 md:gap-4 w-full items-end">
                             <div className="relative flex-1 group flex bg-[#0f172a] border border-white/10 rounded-2xl shadow-2xl transition-all focus-within:border-cyan-500/50">
                                 <textarea 
                                     rows="1"

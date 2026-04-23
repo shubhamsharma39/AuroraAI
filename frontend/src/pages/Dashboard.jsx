@@ -41,7 +41,7 @@ const DashboardCard = ({ card, i, onNavigate }) => {
             onClick={() => onNavigate(card.action)}
         >
             <div className="absolute inset-x-0 bottom-[-10px] h-4 mx-auto w-[90%] bg-black/40 blur-xl rounded-full transition-transform duration-500 group-hover:scale-110" />
-            <div className="glass-prime h-full p-10 flex flex-col relative overflow-hidden group-hover:border-white/20 transition-colors duration-500">
+            <div className="glass-prime h-full p-6 md:p-10 flex flex-col relative overflow-hidden group-hover:border-white/20 transition-colors duration-500">
                 <div className="glow-overlay" />
                 
                 {/* Background Accent */}
@@ -114,7 +114,7 @@ const Dashboard = ({ onNavigate }) => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="text-6xl font-black mb-4 tracking-tighter"
+                    className="text-4xl md:text-6xl font-black mb-4 tracking-tighter"
                 >
                     Aurora <span className="gradient-text">Prime</span>
                 </motion.h1>
@@ -138,16 +138,16 @@ const Dashboard = ({ onNavigate }) => {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="glass-prime p-10 relative overflow-hidden group"
+                className="glass-prime p-6 md:p-10 relative overflow-hidden group"
             >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-                    <div className="flex items-start gap-6">
-                        <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">
+                    <div className="flex flex-col sm:flex-row items-start gap-6">
+                        <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 shrink-0">
                             <Brain size={32} />
                         </div>
                         <div>
-                            <h3 className="text-xl font-black mb-2 flex items-center gap-3">
+                            <h3 className="text-xl font-black mb-2 flex flex-wrap items-center gap-3">
                                 Local Intelligence Protocol 
                                 <span className="px-2 py-0.5 rounded text-[10px] bg-green-500/20 text-green-400 border border-green-500/20 uppercase tracking-widest font-black">Online</span>
                             </h3>
@@ -156,15 +156,15 @@ const Dashboard = ({ onNavigate }) => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-6 w-full md:w-auto">
                         <div className="flex -space-x-4">
                             {[1, 2, 3, 4].map(i => (
-                                <div key={i} className="w-12 h-12 rounded-2xl border-4 border-[#020617] bg-white/5 backdrop-blur-md flex items-center justify-center text-[10px] font-black text-white/40 hover:text-cyan-400 hover:border-cyan-500/30 transition-all cursor-crosshair">
+                                <div key={i} className="w-10 h-10 md:w-12 md:h-12 rounded-2xl border-4 border-[#020617] bg-white/5 backdrop-blur-md flex items-center justify-center text-[10px] font-black text-white/40 hover:text-cyan-400 hover:border-cyan-500/30 transition-all cursor-crosshair">
                                     {i === 1 ? <Cpu size={14} /> : 'V0' + i}
                                 </div>
                             ))}
                         </div>
-                        <button className="cyber-button bg-white text-[#020617] hover:bg-cyan-400 transition-colors uppercase text-xs tracking-tighter px-8">
+                        <button className="cyber-button w-full sm:w-auto bg-white text-[#020617] hover:bg-cyan-400 transition-colors uppercase text-xs tracking-tighter px-8">
                             Audit Logs
                         </button>
                     </div>

@@ -6,10 +6,12 @@ import ContentGenerator from './pages/ContentGenerator';
 import DocumentAnalyzer from './pages/DocumentAnalyzer';
 import QASection from './pages/QASection';
 import History from './pages/History';
+import { Menu, X } from 'lucide-react';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [currentDocId, setCurrentDocId] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -41,9 +43,30 @@ function App() {
         }
       }} />
       
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar 
+        activeTab={activeTab} 
+        setActiveTab={(tab) => { setActiveTab(tab); setSidebarOpen(false); }} 
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
       
-      <main className="flex-1 ml-72 p-10 max-w-7xl mx-auto w-full relative z-10 transition-all duration-500">
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-20 px-6 glass-morphism z-40 flex items-center justify-between border-b border-white/10">
+          <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-cyan-500/10 rounded-xl flex items-center justify-center border border-white/10 text-cyan-400">
+                  <span className="font-black text-xl">A</span>
+              </div>
+              <h1 className="text-lg font-black tracking-tighter">AURORA<span className="text-cyan-400 text-sm">AI</span></h1>
+          </div>
+          <button 
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-3 rounded-xl bg-white/5 border border-white/10 text-white/60 active:scale-95 transition-all"
+          >
+              {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+      </div>
+      
+      <main className="flex-1 lg:ml-72 p-6 md:p-10 mt-20 lg:mt-0 max-w-7xl mx-auto w-full relative z-10 transition-all duration-500">
         <div className="max-w-6xl mx-auto">
           {renderContent()}
         </div>

@@ -78,13 +78,13 @@ const ContentGenerator = () => {
                 >
                     <Sparkles size={14} /> Creative Protocol 8.0
                 </motion.div>
-                <h1 className="text-5xl font-black tracking-tighter">Content <span className="gradient-text">Studio</span></h1>
-                <p className="text-white/40 text-lg font-medium max-w-xl mx-auto">
+                <h1 className="text-3xl md:text-5xl font-black tracking-tighter">Content <span className="gradient-text">Studio</span></h1>
+                <p className="text-white/40 text-sm md:text-lg font-medium max-w-xl mx-auto">
                     Multi-modal generative suite for high-fidelity text, image, and video synthesis.
                 </p>
             </header>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
                 {/* Configuration Sidebar */}
                 <div className="lg:col-span-5 space-y-8">
                     <div className="glass-prime p-8 space-y-10 relative overflow-hidden group">
@@ -169,13 +169,13 @@ const ContentGenerator = () => {
                 {/* Output Area */}
                 <div className="lg:col-span-7 h-full">
                     <div className="glass-prime h-full min-h-[600px] flex flex-col relative overflow-hidden group/output">
-                        <div className="flex justify-between items-center p-8 border-b border-white/5">
+                        <div className="flex flex-col sm:flex-row justify-between items-center p-6 md:p-8 border-b border-white/5 gap-4">
                             <div className="flex items-center gap-3">
                                 <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
                                 <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-400">Synthesis Terminal</h2>
                             </div>
                             {result && (
-                                <div className="flex gap-2">
+                                <div className="flex flex-wrap gap-2 justify-center">
                                     {(isImage || isVideo) ? (
                                         <button 
                                             onClick={downloadMedia}
@@ -197,7 +197,7 @@ const ContentGenerator = () => {
                             )}
                         </div>
 
-                        <div className="flex-1 p-10 flex flex-col overflow-y-auto scrollbar-hide">
+                        <div className="flex-1 p-6 md:p-10 flex flex-col overflow-y-auto scrollbar-hide">
                             <AnimatePresence mode="wait">
                                 {loading ? (
                                     <motion.div 

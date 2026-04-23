@@ -1,9 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PenTool, FileText, LayoutDashboard, Zap, Activity, Bot, Clock } from 'lucide-react';
 import { aiService } from '../services/api';
+import { X } from 'lucide-react';
 
-const Sidebar = ({ activeTab, setActiveTab }) => {
+const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
     const menuItems = [
         { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
         { id: 'generator', icon: PenTool, label: 'Generator' },
@@ -52,8 +53,35 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     };
 
     return (
-        <aside className="w-72 glass-morphism h-[calc(100vh-40px)] fixed left-5 top-5 bottom-5 flex flex-col p-8 z-50 rounded-[2rem] border-white/10 shadow-2xl">
-            <div className="flex items-center gap-4 mb-14 px-2">
+        <>
+            {/* Backdrop for mobile */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={onClose}
+                        className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm z-[45] lg:hidden"
+                    />
+                )}
+            </AnimatePresence>
+
+            <aside className={`
+                fixed top-0 bottom-0 lg:top-5 lg:bottom-5 lg:left-5
+                w-72 glass-morphism z-50 flex flex-col p-8 
+                transition-all duration-500 ease-in-out
+                lg:rounded-[2rem] border-white/10 shadow-2xl
+                ${isOpen ? 'left-0' : '-left-[300px] lg:left-5'}
+            `}>
+                <button 
+                    onClick={onClose}
+                    className="lg:hidden absolute top-8 right-8 text-white/20 hover:text-white"
+                >
+                    <X size={20} />
+                </button>
+
+                <div className="flex items-center gap-4 mb-14 px-2">
                 <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                     <div className="relative w-11 h-11 bg-[#020617] rounded-xl flex items-center justify-center border border-white/10">
@@ -109,7 +137,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                     </div>
                 </div>
             </div>
-        </aside>
+            </aside>
+        </>
     );
 };
 
