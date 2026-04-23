@@ -9,6 +9,7 @@ import History from './pages/History';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [currentDocId, setCurrentDocId] = useState(null);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -17,9 +18,9 @@ function App() {
       case 'generator':
         return <ContentGenerator />;
       case 'analyzer':
-        return <DocumentAnalyzer setCurrentDocId={() => {}} />;
+        return <DocumentAnalyzer setCurrentDocId={setCurrentDocId} onNavigate={setActiveTab} />;
       case 'qa':
-        return <QASection />;
+        return <QASection docId={currentDocId} />;
       case 'history':
         return <History />;
       default:

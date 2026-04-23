@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Bot, Loader2, Zap, Trash2, MessageCircle } from 'lucide-react';
+import { Send, User, Bot, Loader2, Zap, Trash2, MessageCircle, Database } from 'lucide-react';
 import { aiService } from '../services/api';
 import { historyService } from '../services/historyService';
 import toast from 'react-hot-toast';
@@ -32,7 +32,7 @@ const TypingMessage = ({ content }) => {
     );
 };
 
-const QASection = () => {
+const QASection = ({ docId }) => {
     const [question, setQuestion] = useState('');
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -62,7 +62,7 @@ const QASection = () => {
             const res = await aiService.universalChat({ 
                 message: userMsg.content,
                 history: history,
-                attachments: [] // No attachments after removal
+                attachments: docId ? [{ type: 'doc', id: docId, name: 'Current Active Document' }] : []
             });
             setMessages(prev => [...prev, { role: 'assistant', content: res.data.answer, timestamp: new Date() }]);
             
@@ -104,6 +104,12 @@ const QASection = () => {
                 </div>
             
                 <div className="flex items-center gap-4">
+                    {docId && (
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 border border-cyan-400/20 text-cyan-400">
+                            <Database size={14} />
+                            <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Document Active: {docId.slice(0, 8)}...</span>
+                        </div>
+                    )}
                     <button 
                         onClick={clearChat}
                         className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white/40 hover:text-red-400 hover:bg-red-400/10 hover:border-red-400/20 transition-all duration-300"

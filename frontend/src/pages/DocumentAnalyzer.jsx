@@ -6,7 +6,7 @@ import { historyService } from '../services/historyService';
 import toast from 'react-hot-toast';
 
 
-const DocumentAnalyzer = ({ setCurrentDocId }) => {
+const DocumentAnalyzer = ({ setCurrentDocId, onNavigate }) => {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
@@ -169,12 +169,21 @@ const DocumentAnalyzer = ({ setCurrentDocId }) => {
                                     <p className="text-[10px] font-black uppercase tracking-widest text-white/20">Access Token (Doc ID)</p>
                                     <div className="flex items-center justify-between">
                                         <code className="text-cyan-400 font-mono font-black text-xl">{result.doc_id}</code>
-                                        <button 
-                                            onClick={() => { navigator.clipboard.writeText(result.doc_id); toast.success('Token copied'); }}
-                                            className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors"
-                                        >
-                                            Copy
-                                        </button>
+                                        <div className="flex gap-4">
+                                            <button 
+                                                onClick={() => { navigator.clipboard.writeText(result.doc_id); toast.success('Token copied'); }}
+                                                className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors"
+                                            >
+                                                Copy
+                                            </button>
+                                            <button 
+                                                onClick={() => onNavigate('qa')}
+                                                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-600 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest"
+                                            >
+                                                <Zap size={14} fill="currentColor" />
+                                                Consult Aether
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
