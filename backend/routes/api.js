@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/status', aiController.getSystemStatus);
 router.post('/generate-content', aiController.generateContent);
 router.post('/upload-document', upload.single('file'), aiController.uploadDocument);
 router.post('/ask-document', aiController.askDocument);

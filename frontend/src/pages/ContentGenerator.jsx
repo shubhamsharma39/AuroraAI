@@ -40,8 +40,9 @@ const ContentGenerator = () => {
             });
             
             toast.success('Synthesis complete!');
-        } catch {
-            toast.error('Synthesis failed. Is the engine active?');
+        } catch (err) {
+            const errorMsg = err.response?.data?.error || 'Synthesis failed. Is the engine active?';
+            toast.error(errorMsg);
         } finally {
             setLoading(false);
         }

@@ -16,6 +16,7 @@ export const aiService = {
     
     // History methods
     getHistory: () => api.get('/history'),
+    getSystemStatus: () => api.get('/status'),
     deleteHistory: (id) => api.delete(`/history/${id}`),
     clearAllHistory: () => api.delete('/history/all'),
 };

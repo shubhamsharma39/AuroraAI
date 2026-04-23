@@ -115,6 +115,31 @@ exports.deleteHistoryEntry = async (req, res) => {
     }
 };
 
+exports.getSystemStatus = async (req, res) => {
+    try {
+        const mongoose = require('mongoose');
+        const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
+        
+        let aiStatus = 'offline';
+        try {
+            const aiRes = await axios.get(AI_SERVICE_URL, { timeout: 2000 });
+            if (aiRes.status === 200) aiStatus = 'online';
+        } catch (e) {
+            aiStatus = 'offline';
+        }
+
+        res.json({
+            status: 'success',
+            backend: 'online',
+            mongodb: dbStatus,
+            ai_engine: aiStatus,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch system status' });
+    }
+};
+
 exports.clearAllHistory = async (req, res) => {
     try {
         await Activity.deleteMany({});

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PenTool, FileText, LayoutDashboard, Zap, Activity, Bot, Clock } from 'lucide-react';
+import { aiService } from '../services/api';
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
     const menuItems = [
@@ -10,6 +11,45 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         { id: 'qa', icon: Bot, label: 'Aether' },
         { id: 'history', icon: Clock, label: 'History' },
     ];
+    
+    const [status, setStatus] = React.useState('connecting');
+
+    React.useEffect(() => {
+        const checkStatus = async () => {
+            try {
+                const res = await aiService.getSystemStatus();
+                if (res.data.ai_engine === 'online') {
+                    setStatus('online');
+                } else {
+                    setStatus('offline');
+                }
+            } catch (err) {
+                setStatus('error');
+            }
+        };
+        
+        checkStatus();
+        const interval = setInterval(checkStatus, 10000); // Poll every 10s
+        return () => clearInterval(interval);
+    }, []);
+
+    const getStatusColor = () => {
+        switch (status) {
+            case 'online': return 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.6)]';
+            case 'offline': return 'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.6)]';
+            case 'error': return 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.6)]';
+            default: return 'bg-white/20 animate-pulse';
+        }
+    };
+
+    const getStatusLabel = () => {
+        switch (status) {
+            case 'online': return 'Ollama Connected';
+            case 'offline': return 'Engine Sleeping';
+            case 'error': return 'Backend Unreachable';
+            default: return 'Establishing Link...';
+        }
+    };
 
     return (
         <aside className="w-72 glass-morphism h-[calc(100vh-40px)] fixed left-5 top-5 bottom-5 flex flex-col p-8 z-50 rounded-[2rem] border-white/10 shadow-2xl">
@@ -64,8 +104,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                     </div>
                     <p className="text-[10px] font-black text-cyan-400/60 uppercase tracking-widest mb-2">Engine Status</p>
                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.6)] animate-pulse" />
-                        <p className="text-xs font-bold text-white/70">Ollama Connected</p>
+                        <div className={`w-2 h-2 rounded-full ${getStatusColor()} ${status === 'online' ? 'animate-pulse' : ''}`} />
+                        <p className="text-xs font-bold text-white/70">{getStatusLabel()}</p>
                     </div>
                 </div>
             </div>
