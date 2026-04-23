@@ -23,7 +23,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                 } else {
                     setStatus('offline');
                 }
-            } catch (err) {
+            } catch {
                 setStatus('error');
             }
         };
