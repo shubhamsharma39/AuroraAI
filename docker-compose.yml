@@ -13,7 +13,7 @@ services:
     build: ./ai-service
     container_name: aurora_ai_service
     ports:
-      - "8000:8000"
+      - "8001:8000"
     env_file:
       - .env
     environment:
@@ -43,7 +43,7 @@ services:
     build:
       context: ./frontend
       args:
-        - VITE_API_BASE_URL=http://3.111.53.138:5000/api
+        - VITE_API_BASE_URL=http://localhost:5000/api
     container_name: aurora_frontend
     ports:
       - "3000:80"
