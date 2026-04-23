@@ -31,6 +31,8 @@ A universal AI assistant for natural language interaction:
 - **Backend**: Node.js (Express), Multer (File Ingestion), Mongoose.
 - **AI Core**: Python (FastAPI), FAISS (Vector DB), Sentence-Transformers, PyPDF.
 - **Database**: MongoDB (Activity & Analytics Ledger).
+- **Cloud Storage**: Amazon S3 (Object Storage for media & document clusters).
+- **Registry & CI/CD**: Amazon ECR (Elastic Container Registry).
 - **AI Providers**: Ollama (Local), Google Gemini 2.5, Groq (Llama-3), Stability AI.
 
 ---
@@ -92,6 +94,35 @@ npm run dev
 
 ---
 
+## ☁️ Cloud Infrastructure (AWS)
+
+AuroraAI is architected for seamless cloud scalability, utilizing Amazon Web Services (AWS) for production environments:
+
+### 📦 Media & Document Storage (Amazon S3)
+Generated assets, anime art, and uploaded knowledge documents are transitioned to **Amazon S3** in production. This ensures:
+- **Global Availability**: Content is served via low-latency endpoints.
+- **Durability**: 99.999999999% durability for enterprise knowledge clusters.
+- **Scalability**: Handles petabytes of training and synthesis data without performance degradation.
+
+### 🐳 Container Orchestration (Amazon ECR)
+The microservice ecosystem is containerized and hosted on **Amazon Elastic Container Registry (ECR)**:
+- **Private Registry**: Secure storage and management of the Frontend, Backend, and AI-Service images.
+- **Vulnerability Scanning**: Automated security audits for all OS-level dependencies.
+- **Seamless Deployment**: Integrated with AWS deployment pipelines (ECS/EKS) for zero-downtime updates.
+
+### 🏗️ Production Architecture
+```mermaid
+graph LR
+    User[Web Client] --> Frontend[Amazon CloudFront]
+    Frontend --> Backend[AWS ECS Service: Backend]
+    Backend --> AI[AWS ECS Service: AI Core]
+    Backend --> MongoDB[(Amazon DocumentDB)]
+    AI --> S3[(Amazon S3: Storage)]
+    AI --> ECR((Amazon ECR: Registry))
+```
+
+---
+
 ## ⚙️ Configuration (.env)
 
 | Variable | Description | Default |
@@ -100,6 +131,10 @@ npm run dev
 | `GROQ_API_KEY` | Groq platform key | Optional |
 | `OLLAMA_HOST` | Local Ollama endpoint | `http://localhost:11434` |
 | `STABILITY_API_KEY` | Stability AI key for high-res images | Optional |
+| `AWS_ACCESS_KEY_ID`| AWS User Key | Required for S3 |
+| `AWS_SECRET_ACCESS_KEY`| AWS User Secret | Required for S3 |
+| `AWS_S3_BUCKET` | S3 Bucket Name | Required for S3 |
+| `AWS_REGION` | AWS Region (e.g. us-east-1) | `us-east-1` |
 
 ---
 
